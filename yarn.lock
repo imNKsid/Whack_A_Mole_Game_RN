@@ -5862,6 +5862,11 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
+rn-sprite-sheet@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/rn-sprite-sheet/-/rn-sprite-sheet-1.1.12.tgz#fb6013860863cf92373699ee2aec782929393485"
+  integrity sha512-Cl8asom4asoSRwCqs2wz3sKXk6b6s32yDIF28xx/EFhTi4H+y45YZyMB/WHpZ1YSc28sWRFiHW0z1Han8jYT4w==
+
 run-parallel@^1.1.9:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/run-parallel/-/run-parallel-1.2.0.tgz#66d1368da7bdf921eb9d95bd1a9229e7f21a43ee"
