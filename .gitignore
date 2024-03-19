@@ -1,1 +1,4 @@
 node_modules
+yarn.lock
+ios/Pods
+ios/Podfile.lock
