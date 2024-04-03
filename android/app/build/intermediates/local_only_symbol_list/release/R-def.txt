@@ -1,0 +1,18 @@
+R_DEF: Internal format may change without notice
+local
+drawable node_modules_rnspritesheet_src_assets_mummy
+drawable rn_edit_text_material
+drawable src_assets_img_background
+drawable src_assets_img_icon_health
+drawable src_assets_img_icon_pause
+drawable src_assets_img_icon_play
+drawable src_assets_img_icon_restart
+drawable src_assets_img_icon_score
+drawable src_assets_img_icon_time
+drawable src_assets_img_sprites
+integer react_native_dev_server_port
+integer react_native_inspector_proxy_port
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style AppTheme

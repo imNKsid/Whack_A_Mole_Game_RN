@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_node_modules_rnspritesheet_src_assets_mummy.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/node_modules_rnspritesheet_src_assets_mummy.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_icon_score.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_icon_score.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.whack_a_mole.app-main-27:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_icon_restart.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_icon_restart.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_background.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_background.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_icon_pause.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_icon_pause.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_icon_play.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_icon_play.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_sprites.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_sprites.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.whack_a_mole.app-main-27:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_icon_time.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_icon_time.png"
+    },
+    {
+        "merged": "com.whack_a_mole.app-merged_res-26:/drawable-mdpi_src_assets_img_icon_health.png.flat",
+        "source": "com.whack_a_mole.app-res-21:/drawable-mdpi/src_assets_img_icon_health.png"
+    }
+]

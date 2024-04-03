@@ -1,0 +1,4 @@
+#Wed Apr 03 00:36:06 IST 2024
+base.0=/Users/mac/Documents/Projects/Whack_A_Mole_Game_RN/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
