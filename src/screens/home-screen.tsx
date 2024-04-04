@@ -39,9 +39,11 @@ const Home = () => {
   useEffect(() => {
     // Return early, if this is the first render:
     if (!didMount.current) {
+      // This check is to determine if the component is being mounted for the first time
       didMount.current = true;
       return;
     }
+    // If it's not the first render, it calls the setupTicks() function
     setupTicks();
   }, [state.level]);
 
@@ -51,29 +53,38 @@ const Home = () => {
     setupTicks();
   };
 
+  // Function to Start game, setting speed, timer and popping up the mole.
   const setupTicks = () => {
-    let speed = 750 - state.level * 50;
+    //Here, speed is the speed at which moles will pop(come) up in the game.
+    let speed = 750 - state.level * 50; //For the 1st level, the speed of popping the mole is 700ms.
     if (speed < 350) {
+      //If in any level, the speed exceeds 350ms, then resetting it to 350.
       speed = 350;
     }
 
-    intervalRef.current = setInterval(popRandomMole, speed); //Currently, it's set to 3 seconds, it should be speed
-    timeIntervalRef.current = setInterval(timerTick, 1000);
+    intervalRef.current = setInterval(popRandomMole, speed); //Calling popRandomMole() at speed level.
+    timeIntervalRef.current = setInterval(timerTick, 1000); //Calling timerTick() at every second, just like a timer.
   };
 
   const popRandomMole = () => {
+    //Checking if the no. of moles is >=12 to avoid overcrowding with moles.
     if (molesRef.current.length >= 12) {
       return;
     }
 
-    let randomIndex = randomBetween(0, 11);
+    let randomIndex = randomBetween(0, 11); //Generating randomIndex for the mole's position to pop-up.
 
+    // It checks 2 conditions -
+    //  1. It checks whether the mole at the random index is not already in the process of popping (!molesRef[randomIndex]?.isPopping), and
+    //  2. the number of moles currently popping (molesPopping) is less than 3.
     if (!molesRef[randomIndex]?.isPopping && molesPopping < 3) {
-      setMolePop(randomIndex);
+      setMolePop(randomIndex); //If both conditions met, then setting a Mole for popping.
     }
   };
 
+  // Calling this function at every second, looking like a timer
   const timerTick = () => {
+    //Checking if the time reaches 0, if yes then marking the level as cleared & clearing all the intervals
     if (state.time === 0) {
       clearInterval(intervalRef.current);
       clearInterval(timeIntervalRef.current);
@@ -82,6 +93,7 @@ const Home = () => {
         cleared: true,
       }));
     } else {
+      // If the game time is not 0, then decrementing it by 1.
       setState((prev) => ({
         ...prev,
         time: --state.time,
@@ -89,7 +101,9 @@ const Home = () => {
     }
   };
 
+  // Function to show Pause status of game
   const pause = () => {
+    // Clearing the intervals and setting the paused variable as true.
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (timeIntervalRef.current) clearInterval(timeIntervalRef.current);
     setState((prevState) => ({
@@ -98,15 +112,20 @@ const Home = () => {
     }));
   };
 
+  // Function to execute Resume status of game
   const resume = () => {
+    // Setting the paused variable as false.
     setState((prevState) => ({
       ...prevState,
       paused: false,
     }));
     setupTicks();
+    // Calling setupTicks() function to start the game again
   };
 
+  // Function to increase the level after user completes one level
   const nextLevel = () => {
+    // Increasing the level & setting other variables to initial state
     setState((prev) => ({
       ...prev,
       level: state.level + 1,
@@ -117,14 +136,23 @@ const Home = () => {
     setMolesPopping(0);
   };
 
+  //Function to generate a random integer within a specified range (inclusive).
   const randomBetween = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
+    // Math.random() returns a random number between 0 (inclusive),  and 1 (exclusive)
+    // Math.random() always returns a number lower than 1.
+    // (max - min + 1) - calculates the range of numbers between min and max (inclusive)
+    // Adding 1 ensures that the maximum value is inclusive in the range
+    // Math.random() * (max - min + 1) - gives a no. between min & max
+    // Adding 'min' ensures that the no. is within min and max.
+    // At last, Math.floor() rounds down the result to the nearest integer
   };
 
   const onFinishPopping = (index: any) => {
     setMolesPopping(molesPopping - 1);
   };
 
+  // Function to calculate score
   const onScore = () => {
     setState((prevState) => ({
       ...prevState,
@@ -132,11 +160,14 @@ const Home = () => {
     }));
   };
 
+  // Function that handles the logic when the player takes damage in the game
   const onDamage = () => {
+    // If the game is already cleared, gameover or paused then directly return
     if (state.cleared || state.gameover || state.paused) {
       return;
     }
 
+    // Calculating the new health of the player after taking damage
     let targetHealth = state.health - 10 < 0 ? 0 : state.health - 16;
 
     setState((prevState) => ({
@@ -145,10 +176,12 @@ const Home = () => {
     }));
 
     if (targetHealth <= 0) {
+      // If targetHealth reaches to O or less, end the game
       gameOver();
     }
   };
 
+  // Game Over function
   const gameOver = () => {
     clearInterval(intervalRef.current);
     clearInterval(timeIntervalRef.current);
@@ -159,6 +192,7 @@ const Home = () => {
     }));
   };
 
+  // Function for handling the logic when the player heals in the game.
   const onHeal = () => {
     let targetHealth = state.health + 10 > 100 ? 100 : state.health + 16;
     setState((prevState) => ({
@@ -167,6 +201,8 @@ const Home = () => {
     }));
   };
 
+  // Constants.MAX_WIDTH: This represents the maximum width available for the health bar.
+  // Constants.XR: This seems to be a scaling factor used to adapt dimensions to different screen sizes.
   let healthBarWidth =
     ((Constants.MAX_WIDTH -
       Constants.XR * 100 -

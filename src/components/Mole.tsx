@@ -19,6 +19,8 @@ const Mole = React.forwardRef((props: any, ref) => {
     }
   }, [props.molePop]);
 
+  // The useImperativeHandle hook is used in React functional components to customize the instance value
+  // that is exposed by a ref when used with forwardRef.
   useImperativeHandle(ref, () => ({
     playAnimation(type: string, fps: number, onFinish: () => void) {
       moleRef.current.play({
@@ -27,19 +29,36 @@ const Mole = React.forwardRef((props: any, ref) => {
         onFinish,
       });
     },
+    // When the playAnimation method is called, it accesses the moleRef
+    // (a reference to a sprite animation component) and calls its play method,
+    // passing in the animation type, fps, and onFinish callback.
   }));
+  // The purpose of using useImperativeHandle here is to expose a specific method (playAnimation)
+  // of the moleRef.current instance to the parent component.
+  // This allows the parent component to trigger specific animations on the mole component
+  // by calling playAnimation through the ref.
 
+  // Function for handling the logic when the mole pops up in the game
   const pop = () => {
+    // Setting whack & attack variables to false and setting pop variable to true.
     setIsWhacked(false);
     setIsAttacking(false);
     setIsPopping(true);
 
-    setIsFeisty(Math.random() < 0.4);
-    if (!isFeisty) {
-      setIsHealing(Math.random() < 0.05);
+    // Randomly determines whether the mole will be feisty based on a 40% chance.
+    // Fiesty means the mole attacks the player if not whacked in time.
+    const feisty = Math.random() < 0.4;
+    setIsFeisty(feisty);
+
+    // Randomly determines whether the mole will be healing based on a 5% chance.
+    const healing = Math.random() < 0.05;
+    if (!feisty) {
+      setIsHealing(healing);
+      // Sets the state indicating whether the mole is healing, but only if it's not feisty.
     }
 
-    if (isHealing) {
+    // Handling Healing Animation
+    if (healing) {
       moleRef.current.play({
         type: "heal",
         fps: 24,
@@ -54,9 +73,12 @@ const Mole = React.forwardRef((props: any, ref) => {
               },
             });
           }, 1000);
+          // After healing animation, hiding animation triggers.
+          // And after hiding animation finishes, mole is considered to be popped down
         },
       });
     } else {
+      // Handling Regular Animation (Appearance) with attack
       moleRef.current.play({
         type: "appear",
         fps: 24,
@@ -80,6 +102,10 @@ const Mole = React.forwardRef((props: any, ref) => {
                 },
               });
             }, 1000);
+            // After Appearance animation finishes, it checks if the mole is feisty.
+            // If yes, then triggering the attack animation while making attack variable to true
+            // and calling the onDamage() function.
+            // Finally, hiding animation triggers.
           } else {
             actionTimeoutRef.current = setTimeout(() => {
               moleRef.current.play({
@@ -91,25 +117,34 @@ const Mole = React.forwardRef((props: any, ref) => {
                 },
               });
             }, 1000);
+            // If the mole is not feisty, it simply hides the mole after a delay without any attack animation.
           }
         },
       });
     }
   };
 
+  // Whack means Attack. (Just for future reference)
+  // Function to handle the logic when the mole is whacked by the player
   const whack = () => {
+    // At first, checking if the mole is popping or attacked or attacking. If yes, then don't go further.
     if (!isPopping || isWhacked || isAttacking) {
       return;
     }
 
+    // If there's an existing action timeout, then clearing it out.
     if (actionTimeoutRef.current) {
       clearTimeout(actionTimeoutRef.current);
     }
 
+    // Now, setting whacked variable to true & feisty to false showing that
+    // now the mole is whacked (so no attacking from mole side).
     setIsWhacked(true);
     setIsFeisty(false);
 
+    // Letting the parent component know to update the score.
     props.onScore();
+    // If the mole is in the healing state, then calling onHeal() function to heal the mole.
     if (isHealing) {
       props.onHeal();
     }
@@ -128,6 +163,10 @@ const Mole = React.forwardRef((props: any, ref) => {
         });
       },
     });
+    // After whack, triggering the dizzy animation to represent the mole reaction after been whacked.
+    // After that, finally triggering the faint animation to hide the mole setting isPopping variable false
+    // Finally, calling onFinishPopping() function to let parent component know that
+    // the mole is gone down to pop another mole up.
   };
 
   return (
